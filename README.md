@@ -1,13 +1,30 @@
-# University Project
+# University Project for WEB and Internet course 
 
-This is a university project developed using **HTML**, **CSS**, **Bootstrap**, and **PHP** with **session management** for user authentication and interaction. The project aims to provide a solution for [describe the purpose of your project, e.g., managing university courses, handling student registrations, etc.].
+# Blood Bank Management System
+
+A web-based Blood Bank Management System built using HTML, CSS, Bootstrap, and PHP with session management. This system allows storing donor information and performing basic CRUD (Create, Read, Update, Delete) operations for managing blood donation data.
 
 ## Features
 
-- **Responsive Design**: Built using Bootstrap to ensure the application works well on various devices and screen sizes.
-- **Session Management**: PHP sessions are used to manage user logins, maintain user state, and handle authentication securely.
-- **User Authentication**: Users can log in and access restricted areas of the application based on their session data.
-- **Dynamic Content**: Data is fetched and displayed dynamically, ensuring real-time updates and efficient content rendering.
+- **Donor Information Storage**: Store and manage donor details, including name, blood group, contact information, etc.
+- **CRUD Operations**: Perform Create, Read, Update, and Delete operations on donor data.
+- **Session Management**: Secure login for users with session management to ensure that only authorized users can access and modify data.
+- **Responsive UI**: Built using Bootstrap for a responsive and mobile-friendly user interface.
+
+## Tech Stack
+
+- **Frontend**: HTML, CSS, Bootstrap
+- **Backend**: PHP
+- **Session Management**: PHP sessions for user authentication and authorization
+- **Database**: MySQL (for storing donor information)
+
+## Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/blood-bank-management.git
+
   
 ## Technologies Used
 
