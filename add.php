@@ -32,43 +32,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="container mt-4">
 
-    <h2>Add Blood Bank Information</h2>
-    <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Location</label>
-            <input type="text" name="location" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Contact Number</label>
-            <input type="text" name="contact" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Blood Type</label>
-            <select name="blood_type" class="form-control" required>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Availability</label>
-            <select name="availability" class="form-control" required>
-                <option value="available">Available</option>
-                <option value="not_available">Not Available</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-success">Add Entry</button>
-        <a href="index.php" class="btn btn-secondary">Cancel</a>
-    </form>
+    <h2>Insert new collection</h2>
+    <form method="POST" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Location</label>
+        <input type="text" name="location" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contact Number</label>
+        <input type="text" name="contact" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Blood Type</label>
+        <select name="blood_type" class="form-control" required>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Availability</label>
+        <select name="availability" class="form-control" required>
+            <option value="available">Available</option>
+            <option value="not_available">Not Available</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Add Entry</button>
+    <a href="index.php" class="btn btn-secondary">Cancel</a>
+</form>
+
 
 </body>
 </html>
