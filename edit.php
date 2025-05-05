@@ -33,18 +33,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body class="container mt-4">
 
-    <h2>Update Information</h2>
+    <h2 class="text-center mb-4">Update Information</h2>
     <form method="POST" class="border p-4 rounded shadow w-50 mx-auto">
     <div class="mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label font-bold">Name</label>
         <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($bloodBank['name']) ?>" required>
     </div>
     <div class="mb-3">
-        <label class="form-label">Location</label>
+        <label class="form-label font-bold">Location</label>
         <input type="text" name="location" class="form-control" value="<?= htmlspecialchars($bloodBank['location']) ?>" required>
     </div>
     <div class="mb-3">
-        <label class="form-label">Contact Number</label>
+        <label class="form-label font-bold">Contact Number</label>
         <input type="text" name="contact" class="form-control" value="<?= htmlspecialchars($bloodBank['contact']) ?>" required>
     </div>
     <div class="mb-3">

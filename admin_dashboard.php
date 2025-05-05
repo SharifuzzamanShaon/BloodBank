@@ -1,11 +1,9 @@
 <?php
 session_start();
-
-// Handle logout request
 if (isset($_POST['logout'])) {
-    session_unset(); // Unset all session variables
+    session_unset(); 
     session_destroy(); // Destroy the session
-    header("Location: login.php"); // Redirect to login page
+    header("Location: login.php"); // redirect to login 
     exit;
 }
 
@@ -14,7 +12,7 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in'] || $_SESSION['role
     exit;
 }
 
-// Initialize dummy blood bank data
+// initial data
 if (!isset($_SESSION['blood_banks'])) {
     $_SESSION['blood_banks'] = [
         ['name' => 'City Blood Bank', 'location' => 'Dhaka', 'contact' => '0123456789', 'blood_type' => 'A+', 'availability' => 'available'],
@@ -28,21 +26,19 @@ if (!isset($_SESSION['blood_banks'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard - Blood Bank</title>
+    <title class="text-center mb-4">Admin Dashboard - Blood Bank</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Blood Bank Inventory</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3 text-center">
+        <h2 class="">Blood Bank Inventory</h2>
         <form method="POST">
             <button type="submit" name="logout" class="btn btn-outline-danger">Logout</button>
         </form>
     </div>
     
-    <a href="add.php" class="btn btn-primary mb-3">Add New Entry</a>
-
-    <!-- Blood Bank Table -->
+    <a href="insertRecord.php" class="btn btn-primary mb-3">Add New Entry</a>
     <table class="table table-striped">
         <thead>
         <tr>
