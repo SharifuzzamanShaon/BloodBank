@@ -1,26 +1,63 @@
 <?php
 session_start();
-
-// Handle logout request
-if (isset($_POST['logout'])) {
-    session_unset(); // Unset all session variables
-    session_destroy(); // Destroy the session
-    header("Location: login.php"); // Redirect to login page
-    exit;
-}
-
+// Redirect if not logged in as a user
 if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in'] || $_SESSION['role'] !== 'user') {
     header("Location: login.php");
     exit;
 }
 
-// Handle blood bank search
-$searchResults = $_SESSION['blood_banks'];
+// Sample data: Only if blood_banks is not already set in the session
+if (!isset($_SESSION['blood_banks'])) {
+    $_SESSION['blood_banks'] = [
+        [
+            'name' => 'City Blood Bank',
+            'location' => 'Dhaka',
+            'contact' => '0123456789',
+            'blood_type' => 'A+',
+            'availability' => 'available'
+        ],
+        [
+            'name' => 'Red Cross',
+            'location' => 'Chittagong',
+            'contact' => '9876543210',
+            'blood_type' => 'O-',
+            'availability' => 'unavailable'
+        ],
+        [
+            'name' => 'Lifesaver Blood Bank',
+            'location' => 'Khulna',
+            'contact' => '01122334455',
+            'blood_type' => 'B+',
+            'availability' => 'available'
+        ],
+        [
+            'name' => 'Hope Blood Center',
+            'location' => 'Rajshahi',
+            'contact' => '01888887777',
+            'blood_type' => 'AB-',
+            'availability' => 'available'
+        ]
+    ];
+}
+
+// Handle logout
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
+
+
+// Search handling
+$bloodBanks = $_SESSION['blood_banks'] ?? [];
+$searchResults = $bloodBanks;
+
 if (isset($_GET['blood_type']) || isset($_GET['location'])) {
     $bt = $_GET['blood_type'] ?? '';
     $loc = $_GET['location'] ?? '';
 
-    $searchResults = array_filter($_SESSION['blood_banks'], function ($bank) use ($bt, $loc) {
+    $searchResults = array_filter($bloodBanks, function ($bank) use ($bt, $loc) {
         $matchesBT = $bt === '' || $bank['blood_type'] === $bt;
         $matchesLoc = $loc === '' || stripos($bank['location'], $loc) !== false;
         return $matchesBT && $matchesLoc;
@@ -33,6 +70,7 @@ if (isset($_GET['blood_type']) || isset($_GET['location'])) {
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard - Blood Bank</title>
+  <link rel="icon" href="./image/image.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
@@ -44,7 +82,7 @@ if (isset($_GET['blood_type']) || isset($_GET['location'])) {
         </form>
     </div>
 
-    <!-- User Search Form -->
+    <!-- Search Form -->
     <form method="GET" class="row g-3 mb-4">
         <div class="col-md-4">
             <input type="text" name="location" class="form-control" placeholder="Search by location" value="<?= htmlspecialchars($_GET['location'] ?? '') ?>">
@@ -66,35 +104,35 @@ if (isset($_GET['blood_type']) || isset($_GET['location'])) {
         </div>
     </form>
 
-    <!-- Blood Bank Table -->
+    <!-- Results Table -->
     <table class="table table-striped">
         <thead>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Contact</th>
-            <th>Blood Type</th>
-            <th>Availability</th>
-        </tr>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Contact</th>
+                <th>Blood Type</th>
+                <th>Availability</th>
+            </tr>
         </thead>
         <tbody>
-        <?php if (empty($searchResults)): ?>
-            <tr><td colspan="5" class="text-center">No results found</td></tr>
-        <?php else: ?>
-            <?php foreach ($searchResults as $bank): ?>
-                <tr>
-                    <td><?= htmlspecialchars($bank['name']) ?></td>
-                    <td><?= htmlspecialchars($bank['location']) ?></td>
-                    <td><?= htmlspecialchars($bank['contact']) ?></td>
-                    <td><?= htmlspecialchars($bank['blood_type']) ?></td>
-                    <td>
-                        <span class="badge <?= $bank['availability'] === 'available' ? 'bg-success' : 'bg-danger' ?>">
-                            <?= ucfirst($bank['availability']) ?>
-                        </span>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php endif; ?>
+            <?php if (empty($searchResults)): ?>
+                <tr><td colspan="5" class="text-center">No results found</td></tr>
+            <?php else: ?>
+                <?php foreach ($searchResults as $bank): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($bank['name']) ?></td>
+                        <td><?= htmlspecialchars($bank['location']) ?></td>
+                        <td><?= htmlspecialchars($bank['contact']) ?></td>
+                        <td><?= htmlspecialchars($bank['blood_type']) ?></td>
+                        <td>
+                            <span class="badge <?= $bank['availability'] === 'available' ? 'bg-success' : 'bg-danger' ?>">
+                                <?= ucfirst($bank['availability']) ?>
+                            </span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </body>
