@@ -1,6 +1,12 @@
 <?php
 include 'session.php';
 
+// Redirect non-admin users to login page
+if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
+    header("Location: login.php");
+    exit;
+}
+
 // Check if the index parameter is set and valid
 if (!isset($_GET['index']) || !isset($_SESSION['blood_banks'][$_GET['index']])) {
     header("Location: index.php");
@@ -29,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Edit Blood Bank Info</title>
+  <link rel="icon" href="./image/image.png" type="image/png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-4">
