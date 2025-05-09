@@ -27,6 +27,7 @@ if (!isset($_SESSION['blood_banks'])) {
 <head>
     <meta charset="UTF-8">
     <title class="text-center mb-4">Admin Dashboard - Blood Bank</title>
+  <link rel="icon" href="./image/image.png" type="image/png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
