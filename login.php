@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     </form>
   </div>
-
   <script>
     const form = document.getElementById("login-form");
     const errorMsg = document.getElementById("error-msg");
