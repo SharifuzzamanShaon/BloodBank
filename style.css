@@ -14,6 +14,9 @@ body {
     position: fixed;
     width: 100%;
 }
+td {
+    white-space: nowrap !important;
+}
 .main-menu {
     display: flex;
     justify-content: center;

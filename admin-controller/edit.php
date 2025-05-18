@@ -1,31 +1,16 @@
 <?php
-include 'session.php';
+session_start();
+require_once '../connectDB/db.php';
 
-// Redirect non-admin users to login page
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.html");
+    exit;
+}
+
 if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
     header("Location: login.php");
-    exit;
-}
-
-// Check if the index parameter is set and valid
-if (!isset($_GET['index']) || !isset($_SESSION['blood_banks'][$_GET['index']])) {
-    header("Location: index.php");
-    exit;
-}
-
-$index = $_GET['index'];
-$bloodBank = $_SESSION['blood_banks'][$index];
-
-// Handle form submission for editing
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['blood_banks'][$index] = [
-        'name' => $_POST['name'],
-        'location' => $_POST['location'],
-        'contact' => $_POST['contact'],
-        'blood_type' => $_POST['blood_type'],
-        'availability' => $_POST['availability']
-    ];
-    header("Location: index.php");
     exit;
 }
 ?>
