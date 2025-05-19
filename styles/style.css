@@ -1,0 +1,19 @@
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+  .hero-section{
+    background-color: blue;
+    
+  }
+  .loading-icon {
+    animation: spin 2s linear infinite;
+    font-size: 3rem;
+    color: #dc3545; /* Bootstrap danger red */
+  }
+  .loading-text {
+    font-size: 1.5rem;
+    color: #6c757d; /* Bootstrap secondary text color */
+    margin-top: 0.75rem;
+    font-weight: 500;
+  }
