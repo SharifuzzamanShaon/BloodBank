@@ -1,0 +1,17 @@
+    .navbar-custom {
+      background: linear-gradient(to right, #dc3545, #ff6f61);
+    }
+
+    .navbar-brand, .nav-link, .btn-outline-light {
+      color: #fff !important;
+    }
+
+    .table thead th {
+      background-color: #f8f9fa;
+    }
+
+    @media (max-width: 576px) {
+      .table-responsive {
+        font-size: 0.875rem;
+      }
+    }
