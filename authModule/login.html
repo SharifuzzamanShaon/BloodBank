@@ -52,7 +52,7 @@
 
         <div id="error-msg" class="alert alert-danger text-center d-none"></div>
 
-        <form id="login-form">
+        <form id="login-form" onsubmit="handleLogin(event)">
           <div class="mb-3">
             <label class="form-label">Username</label>
             <input type="text" name="username" class="form-control" placeholder="admin or user" required />
@@ -75,36 +75,6 @@
     </div>
   </div>
 
-  <script>
-    const form = document.getElementById("login-form");
-    const errorMsg = document.getElementById("error-msg");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = {
-        username: form.username.value.trim(),
-        password: form.password.value,
-      };
-
-      try {
-        const res = await fetch("../login.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        const result = await res.json();
-
-        if (!res.ok) throw new Error(result.error || "Login failed");
-
-        window.location.href = result.redirect;
-      } catch (err) {
-        errorMsg.textContent = err.message;
-        errorMsg.classList.remove("d-none");
-      }
-    });
-  </script>
+  <script src="../js-config/loginModule.js" ></script>
 </body>
 </html>
