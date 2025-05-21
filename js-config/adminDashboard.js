@@ -124,26 +124,36 @@
             alert("An error occurred while updating the record.");
         }
     }
-    const handleDelete = async(id)=>{
-        console.log(id);
-        
-        alert("Are you sure you want to delete this record?");
-        try {
-            const response = await fetch('./api/delete_record.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id })
-            });
-    
-            if (response.ok) {
-                alert("Record deleted successfully!");
-                fetchBloodBanks(); // Refresh the table
-            } else {
-                const errorData = await response.json();
-                alert("Error: " + errorData.error);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert("An error occurred while deleting the record.");
-        }
+const handleDelete = async (id) => {
+    if (!id) {
+        alert("Invalid ID");
+        return;
     }
+
+    if (!confirm("Are you sure you want to delete this record?")) {
+        return;
+    }
+
+    try {
+        const response = await fetch('./api/delete_record.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.message || "Deleted successfully.");
+            fetchBloodBanks(); // Refresh the table
+        } else {
+            alert("Error: " + result.error);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while deleting the record.");
+    }
+}
+// Toggle sidebar
+    document.getElementById("menu-toggle").addEventListener("click", function () {
+      document.getElementById("wrapper").classList.toggle("toggled");
+    })
