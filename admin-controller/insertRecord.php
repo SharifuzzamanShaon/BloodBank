@@ -14,45 +14,45 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add Blood Bank Info</title>
   <link rel="icon" href="./image/image.png" type="image/png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
 </head>
 <body class="bg-light">
 
   <!-- Header -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-    <div class="container">
-      <a class="navbar-brand" href="#">Blood Bank Admin</a>
+    <div class="container justify-content-center">
+      <a class="navbar-brand text-center" href="#">Add New Record</a>
     </div>
   </nav>
 
   <!-- Page Content -->
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6">
         <div class="card shadow-sm">
           <div class="card-header bg-danger text-white text-center">
-            <h4>Add Blood Bank Entry</h4>
+            <h4 class="mb-0">New Entry</h4>
           </div>
           <div class="card-body">
-            <form id="bloodForm" method="POST" onsubmit=" insertNewRecord(event)">
+            <form id="bloodForm" method="POST" onsubmit="insertNewRecord(event)">
               <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" required>
+                <input type="text" name="name" class="form-control" required />
               </div>
               <div class="mb-3">
                 <label class="form-label">Location</label>
-                <input type="text" name="location" class="form-control" required>
+                <input type="text" name="location" class="form-control" required />
               </div>
               <div class="mb-3">
                 <label class="form-label">Contact Number</label>
-                <input type="text" name="contact" id="contact" class="form-control" required>
+                <input type="text" name="contact" id="contact" class="form-control" required />
               </div>
               <div class="mb-3">
                 <label class="form-label">Blood Type</label>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
                   <option value="unavailable">Not Available</option>
                 </select>
               </div>
-              <div class="d-flex justify-content-between">
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-between">
                 <button type="submit" class="btn btn-success">Add Entry</button>
                 <button type="button" class="btn btn-secondary" onclick="history.back()">Cancel</button>
               </div>
@@ -85,8 +85,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
       </div>
     </div>
   </div>
+
 </body>
 </html>
+
 <script>
   const insertNewRecord = async (event)=>{
     const form = document.getElementById('bloodForm');
