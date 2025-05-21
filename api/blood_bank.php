@@ -27,7 +27,7 @@ try {
         $sql .= " AND location LIKE :location";
         $params[':location'] = '%' . $_GET['location'] . '%';
     }
-
+    $sql .= " ORDER BY id DESC"; 
     // Prepare and execute
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
