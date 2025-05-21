@@ -14,7 +14,7 @@ $role = $_SESSION['role'] ?? null;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/style.css"/>
+  <link rel="stylesheet" href="./styles/style.css" />
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -62,39 +62,57 @@ $role = $_SESSION['role'] ?? null;
     <!-- Hero Section -->
     <section class="bg-light text-center py-5 hero-section">
       <div class="container">
-        <h1 class="display-6 fw-bold text-danger ">Donate Blood, Save Lives</h1>
+        <h1 class="display-6  text-danger ">Donate Blood, Save Lives</h1>
         <p class="lead">Your small effort can give others a second chance at life.</p>
-        <img src="./image/image.png" alt="Donate Blood" class="img-fluid" style="max-width: 100px;" />
+        <img src="./image/image.png" alt="Donate Blood" class="img-fluid" style="max-width: 80px;" />
       </div>
     </section>
 
     <!-- Search Blood Section -->
     <section class="container my-3">
-      <!-- <h3 class="text-center mb-2 fs-5 ">Search for Blood</h3> -->
-      <form class="row g-3 justify-content-center">
-        <div class="col-md-2">
-          <select class="form-select" required>
-            <option value="">Select Blood Group</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
+      <section class="container my-3">
+        <form id="searchForm" class="row g-3 justify-content-center" onsubmit="searchDoner(event)">
+          <div class="col-md-2">
+            <select class="form-select" name="blood_type" required>
+              <option value="">Select Blood Group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" name="location" placeholder="Enter City or Location" required />
+          </div>
+          <div class="col-md-2 d-grid">
+            <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#searchBlood">
+              FIND DONOR
+            </button>
+          </div>
+        </form>
+      </section>
+      <!-- Modal -->
+      <div class="modal fade" id="searchBlood" tabindex="-1" aria-labelledby="bloodRequestModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="bloodRequestModalLabel">Available Donors</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row" id="resultsBody"></div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Enter City or Location" required />
-        </div>
-        <div class="col-md-2 d-grid">
-          <button type="submit" class="btn btn-danger">I NEED BLOOD</button>
-        </div>
-      </form>
+      </div>
       <!-- Carousel -->
       <div id="bloodRequestCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
-      style="max-width: 400px; margin: auto;">
+        style="max-width: 400px; margin: auto;">
         <div class="carousel-inner" id="blood-request-body">
           <div class="carousel-item active">
             <div class="d-flex flex-column justify-content-center align-items-center" style="height: 220px;">
@@ -123,82 +141,7 @@ $role = $_SESSION['role'] ?? null;
     <p class="mb-0">&copy; 2025 Blood Bank. All rights reserved.</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="text/javascript">
-    async function fetchBloodRequests() {
-      const container = document.getElementById("blood-request-body");
-
-      container.innerHTML = `
-    <div class="carousel-item active">
-      <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-        <p class="text-muted">Loading...</p>
-      </div>
-    </div>
-  `;
-
-      try {
-        const response = await fetch("../api/get_blood_requests.php", {
-          method: "GET",
-          credentials: "include",
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        container.innerHTML = "";
-
-        if (!data || data.length === 0) {
-          container.innerHTML = `
-        <div class="carousel-item active">
-          <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-            <p class="text-muted">No blood requests found.</p>
-          </div>
-        </div>
-      `;
-          return;
-        }
-
-        data.forEach((req, index) => {
-          const isActive = index === 0 ? "active" : "";
-          const slide = document.createElement("div");
-          slide.className = `carousel-item ${isActive}`;
-          slide.innerHTML = `
-        <div class="card mx-auto my-4" style="max-width: 500px;">
-          <div class="card-body text-center">
-            <h5 class="card-title text-danger">${req.bloodgroup} Blood Request</h5>
-            <p><strong>Username:</strong> ${req.username}</p>
-            <p><strong>Quantity:</strong> ${req.quantity}</p>
-            <p><strong>Contact:</strong> ${req.contact}</p>
-            <p><strong>Location:</strong> ${req.location}</p>
-            <p><strong>Status:</strong> 
-              <span class="badge ${req.status.toLowerCase() === "approved"
-              ? "bg-success"
-              : req.status.toLowerCase() === "pending"
-                ? "bg-warning text-dark"
-                : "bg-secondary"
-            }">${req.status}</span>
-            </p>
-          </div>
-        </div>
-      `;
-          container.appendChild(slide);
-        });
-      } catch (error) {
-        console.error("Error fetching blood requests:", error);
-        container.innerHTML = `
-      <div class="carousel-item active">
-        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
-          <p class="text-danger">Error: ${error.message}</p>
-        </div>
-      </div>
-    `;
-      }
-    }
-    // Run on page load
-    document.addEventListener("DOMContentLoaded", fetchBloodRequests);
-
-  </script>
+  <script src="./js-config/index.js"></script>
 </body>
 
 </html>
