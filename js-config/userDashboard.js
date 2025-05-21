@@ -109,8 +109,6 @@ const handleBloodRequest = async (event) => {
       credentials: "include",  // Important to send session cookie for PHP
       body: JSON.stringify(formData),
     });
-
-    // Read raw text response (to debug invalid JSON responses)
     const text = await res.text();
     console.log("Raw response:", text);
 
