@@ -38,9 +38,8 @@ if (isset($_POST['logout'])) {
         <a href="#" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#requestBloodModal">
           Request for Blood <i class="bi bi-droplet-fill"></i>
         </a>
-        <!-- Logout Button -->
         <form method="POST" class="d-inline">
-          <button type="submit" name="logout" class="btn btn-outline-light text-black">
+          <button type="submit" name="logout" class="btn btn-danger">
             Logout <i class="bi bi-box-arrow-right"></i>
           </button>
         </form>
