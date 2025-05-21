@@ -1,6 +1,6 @@
     /* Colorful header background gradient */
     .navbar-gradient {
-      background:  #d4145a;
+      background:  rgb(220 53 69);
     }
 
     /* Navbar brand styling */
@@ -40,15 +40,62 @@
 
     /* Buttons with custom colors */
     .btn-primary-custom {
-      background-color: #d4145a;
+      background-color: rgb(220 53 69);
       border: none;
     }
 
     .btn-primary-custom:hover {
-      background-color: #a31043;
+      background-color: rgb(220 53 69);
     }
     .title{
         font-size: 1.4rem;
         font-weight: 600;
-        color: #d4145a;
+        color: rgb(220 53 69);
+    }
+    /* Custom theme color */
+    .bg-custom {
+      background-color: rgb(220 53 69) !important;
+    }
+
+    .text-custom {
+      color: rgb(220 53 69) !important;
+    }
+
+    .btn-custom {
+      background-color: rgb(220 53 69);
+      border: none;
+    }
+
+    .btn-custom:hover {
+      background-color: rgb(220 53 69);
+    }
+
+    /* Sidebar layout */
+    #wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #sidebar-wrapper {
+      min-height: 100vh;
+      width: 250px;
+      transition: all 0.3s ease;
+    }
+
+    #page-content-wrapper {
+      flex: 1;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+      margin-left: -250px;
+    }
+
+    @media (max-width: 768px) {
+      #sidebar-wrapper {
+        margin-left: -250px;
+      }
+
+      #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+      }
     }
