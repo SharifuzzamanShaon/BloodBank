@@ -32,15 +32,14 @@ $role = $_SESSION['role'] ?? null;
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : '' ?>"
-              href="index.php">Home</a>
+              href="index.php">HOME</a>
           </li>
-
           <?php if (!$isLoggedIn): ?>
             <li class="nav-item">
-              <a class="nav-link" href="authModule/login.html">Login</a>
+              <a class="nav-link text-white" href="authModule/login.html">LOGIN</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="authModule/register.html">Register</a>
+              <a class="nav-link text-white" href="authModule/register.html">REGISTER</a>
             </li>
           <?php else: ?>
             <li class="nav-item">
@@ -53,10 +52,8 @@ $role = $_SESSION['role'] ?? null;
           <?php endif; ?>
         </ul>
       </div>
-
     </div>
   </nav>
-
   <!-- Main content area (fills height between navbar and footer) -->
   <main class="flex-grow-1">
     <!-- Hero Section -->
@@ -67,7 +64,6 @@ $role = $_SESSION['role'] ?? null;
         <img src="./image/image.png" alt="Donate Blood" class="img-fluid" style="max-width: 80px;" />
       </div>
     </section>
-
     <!-- Search Blood Section -->
     <section class="container my-3">
       <section class="container my-3">
@@ -90,7 +86,7 @@ $role = $_SESSION['role'] ?? null;
           </div>
           <div class="col-md-2 d-grid">
             <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#searchBlood">
-              FIND DONOR
+              <i class="bi bi-search mr-2"></i> FIND DONAR
             </button>
           </div>
         </form>
@@ -121,7 +117,6 @@ $role = $_SESSION['role'] ?? null;
             </div>
           </div>
         </div>
-
         <button class="carousel-control-prev" type="button" data-bs-target="#bloodRequestCarousel" data-bs-slide="prev"
           aria-label="Previous">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
