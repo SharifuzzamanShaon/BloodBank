@@ -3,11 +3,11 @@ session_start();
 require_once '../connectDB/db.php';
 
 // Allow both admin and user roles
-if (!isset($_SESSION['logged_in']) || !in_array($_SESSION['role'], ['admin', 'user'])) {
-    http_response_code(403);
-    echo json_encode(['error' => 'Unauthorized']);
-    exit;
-}
+// if (!isset($_SESSION['logged_in']) || !in_array($_SESSION['role'], ['admin', 'user'])) {
+//     http_response_code(403);
+//     echo json_encode(['error' => 'Unauthorized']);
+//     exit;
+// }
 
 header('Content-Type: application/json');
 

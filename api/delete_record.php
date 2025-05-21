@@ -4,33 +4,36 @@ require_once '../connectDB/db.php';
 
 header('Content-Type: application/json');
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Only POST requests are allowed']);
+    exit;
+}
+
 $data = json_decode(file_get_contents('php://input'), true);
-if (empty($data['id'])) {
+$id = trim($data['id'] ?? '');
+
+if (!$id || !is_numeric($id)) {
     http_response_code(400);
-    echo json_encode(['error' => 'Missing ID']);
+    echo json_encode(['error' => 'Invalid or missing ID']);
     exit;
 }
 
-$id = (int)$data['id'];
+try {
+    // $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if (!$conn) {
-    http_response_code(500);
-    echo json_encode(['error' => 'DB connection failed']);
-    exit;
-}
+    // Delete statement.
+    $stmt = $pdo->prepare("DELETE FROM blood_banks WHERE id = ?");
+    $stmt->execute([$id]);
 
-$sql = "DELETE FROM blood_banks WHERE id = $id";
-if (mysqli_query($conn, $sql)) {
-    if (mysqli_affected_rows($conn) > 0) {
+    if ($stmt->rowCount() > 0) {
         echo json_encode(['message' => 'Record deleted successfully']);
     } else {
         http_response_code(404);
         echo json_encode(['error' => 'Record not found']);
     }
-} else {
+} catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Delete failed', 'mysql_error' => mysqli_error($conn)]);
+    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
-
-mysqli_close($conn);
-?>
