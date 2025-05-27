@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connectDB/db.php'; // Your PDO connection
+require_once '../connectDB/db.php'; //db connection
 
 header('Content-Type: application/json');
 
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bloodgroup = trim($input['bloodgroup'] ?? '');
     $contact    = trim($input['contact'] ?? '');
     $location   = trim($input['location'] ?? '');
-    $role       = trim($input['role'] ?? 'user'); // default role user
+    $role       = trim($input['role'] ?? 'user'); // default role "user"
 
     // Basic validation
     if (!$username || !$email || !$password || !$bloodgroup || !$contact || !$location) {

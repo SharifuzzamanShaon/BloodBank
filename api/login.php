@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connectDB/db.php'; // Your PDO connection
+require_once '../connectDB/db.php'; //  db connection
 
 header('Content-Type: application/json');
 
@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
-        // Plain text comparison (not secure!)
         if (password_verify($password, $user['password'])) {
             $_SESSION['logged_in'] = true;
             $_SESSION['role'] = $user['role'];
