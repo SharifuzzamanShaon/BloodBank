@@ -1,8 +1,6 @@
 <?php
 session_start();
-require_once '../connectDB/db.php'; // should return a $pdo PDO instance
-
-// Allow both admin and user roles
+require_once '../connectDB/db.php'; 
 
 
 header('Content-Type: application/json');
