@@ -54,7 +54,6 @@ $role = $_SESSION['role'] ?? null;
       </div>
     </div>
   </nav>
-  <!-- Main content area (fills height between navbar and footer) -->
   <main class="flex-grow-1">
     <!-- Hero Section -->
     <section class="bg-light text-center py-5 hero-section">
@@ -97,7 +96,7 @@ $role = $_SESSION['role'] ?? null;
         <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-              <h5 class="modal-title" id="bloodRequestModalLabel">Available Donors</h5>
+              <h5 class="modal-title" id="bloodRequestModalLabel">Available Doners</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
