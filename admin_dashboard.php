@@ -152,8 +152,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
             </form>
           </div>
         </div>
-        <!-- End of edit modal -->
-
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="./js-config/adminDashboard.js"></script>
