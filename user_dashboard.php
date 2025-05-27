@@ -63,11 +63,11 @@ if (isset($_POST['logout'])) {
           ?>
         </select>
       </div>
-      <div class="col-md-4">
-        <button type="submit" class="btn btn-danger w-100">Search</button>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-danger w-100"><i class="bi bi-search mr-2 "></i> Search</button>
       </div>
     </form>
-    <!-- Results Cards -->
+    <!-- Results Cards / Display available/unavailable both blood donations -->
     <div id="resultsBody" class="row g-4 mb-4">
       <div class="col-12 text-center">
         <div class="text-muted">Loading...</div>
