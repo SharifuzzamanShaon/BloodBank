@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE BINARY username = :username LIMIT 1");
     $stmt->execute([':username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
