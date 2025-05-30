@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once './connectDB/db.php';
 
 if (isset($_POST['logout'])) {
   session_unset();
@@ -107,22 +106,22 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
                 <input type="hidden" id="edit-id" />
 
                 <div class="mb-3">
-                  <label for="edit-name" class="form-label">Name</label>
+                  <label for="edit-name" class="form-label fw-bold">Name</label>
                   <input type="text" class="form-control" id="edit-name" required>
                 </div>
 
                 <div class="mb-3">
-                  <label for="edit-location" class="form-label">Location</label>
+                  <label for="edit-location" class="form-label fw-bold">Location</label>
                   <input type="text" class="form-control" id="edit-location" required>
                 </div>
 
                 <div class="mb-3">
-                  <label for="edit-contact" class="form-label">Contact</label>
+                  <label for="edit-contact" class="form-label fw-bold">Contact</label>
                   <input type="text" class="form-control" id="edit-contact" required>
                 </div>
 
                 <div class="mb-3">
-                  <label for="edit-blood-type" class="form-label">Blood Type</label>
+                  <label for="edit-blood-type" class="form-label fw-bold">Blood Type</label>
                   <select id="edit-blood-type" class="form-select" required>
                     <option value="" disabled selected>Select Blood Type</option>
                     <option value="A+">A+</option>
@@ -137,7 +136,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
                 </div>
 
                 <div class="mb-3">
-                  <label for="edit-availability" class="form-label">Availability</label>
+                  <label for="edit-availability" class="form-label fw-bold">Availability</label>
                   <select id="edit-availability" class="form-select" required>
                     <option value="available">Available</option>
                     <option value="unavailable">Unavailable</option>
