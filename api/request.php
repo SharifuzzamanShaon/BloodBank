@@ -26,6 +26,12 @@ if (!$bloodgroup || !$contact || !$location || !$quantity) {
     exit;
 }
 
+if ($quantity < 1 || $quantity > 5) {
+    http_response_code(400);
+    echo json_encode(['error' => 'Quantity must be between 1 and 5.']);
+    exit;
+}
+
 $user_id = $_SESSION['user_id'];
 
 try {
