@@ -43,19 +43,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
           <div class="card-body">
             <form id="bloodForm" method="POST" onsubmit="insertNewRecord(event)">
               <div class="mb-3">
-                <label class="form-label">Name <span class="text-danger">*</span> </label>
+                <label class="form-label fw-bold">Name <span class="text-danger">*</span> </label>
                 <input type="text" name="name" class="form-control" required />
               </div>
               <div class="mb-3">
-                <label class="form-label">Location <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold">Location <span class="text-danger">*</span></label>
                 <input type="text" name="location" class="form-control" required />
               </div>
               <div class="mb-3">
-                <label class="form-label">Contact Number <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold">Contact Number <span class="text-danger">*</span></label>
                 <input type="number" name="contact" id="contact" class="form-control" required />
               </div>
               <div class="mb-3">
-                <label class="form-label">Blood Type <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold">Blood Type <span class="text-danger">*</span></label>
                 <select name="blood_type" class="form-select" required>
                   <option value="" disabled selected>Select blood type</option>
                   <option value="A+">A+</option>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'admin') {
                 </select>
               </div>
               <div class="mb-3">
-                <label class="form-label">Availability <span class="text-danger">*</span></label>
+                <label class="form-label fw-bold">Availability <span class="text-danger">*</span></label>
                 <select name="availability" class="form-select" required>
                   <option value="available">Available</option>
                   <option value="unavailable">Not Available</option>
