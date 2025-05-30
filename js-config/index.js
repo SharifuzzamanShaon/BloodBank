@@ -47,15 +47,7 @@ async function fetchBloodRequests() {
             <p><strong>Quantity:</strong> ${req.quantity}</p>
             <p><strong>Contact:</strong> ${req.contact}</p>
             <p><strong>Location:</strong> ${req.location}</p>
-            <p><strong>Status:</strong> 
-              <span class="badge ${
-                req.status.toLowerCase() === "approved"
-                  ? "bg-success"
-                  : req.status.toLowerCase() === "pending"
-                  ? "bg-warning text-dark"
-                  : "bg-secondary"
-              }">${req.status}</span>
-            </p>
+     
           </div>
         </div>
       `;
