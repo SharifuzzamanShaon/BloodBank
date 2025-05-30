@@ -2,7 +2,7 @@
 session_start();
 require_once './connectDB/db.php';
 
-if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'user') {
+if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'user' ) {
   header("Location: login.php");
   exit;
 }
@@ -86,7 +86,8 @@ if (isset($_POST['logout'])) {
         <form method="POST" onsubmit="return handleBloodRequest(event)">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="bloodGroup" class="form-label">Blood Group</label>
+
+              <label for="bloodGroup" class="form-label">Blood Group <span class="text-danger">*</span></label>
               <select name="blood_group" id="bloodGroup" class="form-select" required>
                 <option value="">Select Blood Group</option>
                 <option value="A+">A+</option>
@@ -100,19 +101,19 @@ if (isset($_POST['logout'])) {
               </select>
             </div>
             <div class="mb-3">
-              <label for="quantity" class="form-label">Blood Quantity (in bags):</label>
-              <input type="number" name="quantity" id="quantity" class="form-control" min="1" required />
+              <label for="quantity" class="form-label">Blood Quantity (in bags) <span class="text-danger">*</span>:</label>
+              <input type="number" name="quantity" id="quantity" min="1" max="5" class="form-control" required />
             </div>
             <div class="mb-3">
-              <label for="location" class="form-label">Location</label>
+              <label for="location" class="form-label">Location <span class="text-danger">*</span>:</label>
               <input type="text" name="location" id="location" class="form-control" required />
             </div>
             <div class="mb-3">
-              <label for="contact" class="form-label">Contact Info</label>
-              <input type="text" name="contact" id="contact" class="form-control" required />
+              <label for="contact" class="form-label">Contact Info <span class="text-danger">*</span>:</label>
+              <input type="number" name="contact" id="contact" class="form-control" required />
             </div>
             <div>
-              <label for="purpose" class="form-label">Reason for Request</label>
+              <label for="purpose" class="form-label">Reason for Request <span class="text-danger">*</span>:</label>
               <select name="purpose" id="purpose" class="form-select">
                 <option value="">Select Reason</option>
                 <option value="Emergency">Emergency</option>
@@ -121,8 +122,8 @@ if (isset($_POST['logout'])) {
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div class="mb-3">
-              <label for="details" class="form-label">Additional Details</label>
+            <div class="mb-3 mt-3">
+              <label for="details" class="form-label">Additional Details <span class="text-muted">Optional</span>:</label>
               <textarea name="details" id="details" class="form-control" rows="3"></textarea>
             </div>
           </div>
