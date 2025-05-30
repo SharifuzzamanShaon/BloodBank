@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check if username or email already exists
-    $stmt = $pdo->prepare("SELECT 1 FROM users WHERE username = :username OR email = :email LIMIT 1");
+    $stmt = $pdo->prepare("SELECT 1 FROM users WHERE BINARY username = :username OR email = :email LIMIT 1");
     $stmt->execute([':username' => $username, ':email' => $email]);
     if ($stmt->fetch()) {
         http_response_code(409); // Conflict
