@@ -11,7 +11,9 @@ if (!isset($_SESSION['logged_in']) || !in_array($_SESSION['role'], ['admin'])) {
     exit;
 }
 
-$data = json_decode(file_get_contents("php://input"), true);
+$data = json_decode(file_get_contents("php://input"), true); //reads raw POST data from the HTTP request body. //JSON string into a PHP associative array 
+
+
 
 // Validate inputs
 $name = trim($data['name'] ?? '');
