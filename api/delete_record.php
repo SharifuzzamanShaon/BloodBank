@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
+$data = json_decode(file_get_contents('php://input'), true); //reads raw POST data from the HTTP request body. //JSON string into a PHP associative array 
 $id = trim($data['id'] ?? '');
 
 if (!$id || !is_numeric($id)) {
