@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once './connectDB/db.php';
 
 if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'user' ) {
   header("Location: login.php");
