@@ -3,7 +3,11 @@ const  handleLogin=async(event)=> {
 
     const form = event.target;
     const errorMsg = document.getElementById("error-msg");
-
+    if(!form.username.value.trim() || !form.password.value){
+        errorMsg.textContent = "Username and password are required.";
+        errorMsg.classList.remove("d-none");
+        return;
+    }
     const formData = {
       username: form.username.value.trim(),
       password: form.password.value,
