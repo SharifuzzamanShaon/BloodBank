@@ -29,9 +29,9 @@ if (!$id || !$name || !$location || !$contact || !$blood_type || !$availability)
 }
 
 try {
-    // Connect to database
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // // Connect to database
+    // $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Update record
     $stmt = $pdo->prepare("UPDATE blood_banks SET name = ?, location = ?, contact = ?, blood_type = ?, availability = ? WHERE id = ?");
