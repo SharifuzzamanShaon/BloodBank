@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../connectDB/db.php'; 
+require_once '../connectDB/db.php';  //connect db
 
 
 header('Content-Type: application/json');
@@ -15,23 +15,23 @@ try {
     ";
     $params = [];
 
-    // Optional filter: status
-    if (!empty($_GET['status'])) {
-        $sql .= " AND br.status = :status";
-        $params[':status'] = $_GET['status'];
-    }
+    // // Optional filter: status
+    // if (!empty($_GET['status'])) {
+    //     $sql .= " AND br.status = :status";
+    //     $params[':status'] = $_GET['status'];
+    // }
 
-    // Optional filter: bloodgroup
-    if (!empty($_GET['bloodgroup'])) {
-        $sql .= " AND br.bloodgroup = :bloodgroup";
-        $params[':bloodgroup'] = $_GET['bloodgroup'];
-    }
+    // // Optional filter: bloodgroup
+    // if (!empty($_GET['bloodgroup'])) {
+    //     $sql .= " AND br.bloodgroup = :bloodgroup";
+    //     $params[':bloodgroup'] = $_GET['bloodgroup'];
+    // }
 
-    // Optional filter: location (partial match)
-    if (!empty($_GET['location'])) {
-        $sql .= " AND br.location LIKE :location";
-        $params[':location'] = '%' . $_GET['location'] . '%';
-    }
+    // // Optional filter: location (partial match)
+    // if (!empty($_GET['location'])) {
+    //     $sql .= " AND br.location LIKE :location";
+    //     $params[':location'] = '%' . $_GET['location'] . '%';
+    // }
 
     // Final order
     $sql .= " ORDER BY br.requested_at DESC";
@@ -39,8 +39,8 @@ try {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
 
-    $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    echo json_encode($requests);
+    $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($res);
 
 } catch (PDOException $e) {
     http_response_code(500);
